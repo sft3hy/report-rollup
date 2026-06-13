@@ -9,30 +9,30 @@ console = Console()
 
 _model = None
 
-def get_bge_model() -> SentenceTransformer:
-    """Lazy-loads and caches the BAAI/bge-base-en-v1.5 model."""
+def get_nomic_model() -> SentenceTransformer:
+    """Lazy-loads and caches the nomic-ai/nomic-embed-text-v1.5 model."""
     global _model
     if _model is None:
-        console.print("[blue]Loading BGE embedding model (BAAI/bge-base-en-v1.5)...[/blue]")
-        # SentenceTransformer handles downloading and caching locally.
-        # It automatically runs on GPU/MPS if available, otherwise CPU.
-        _model = SentenceTransformer("BAAI/bge-base-en-v1.5")
-        console.print("[green]BGE model loaded successfully.[/green]")
+        console.print("[blue]Loading Nomic embedding model (nomic-ai/nomic-embed-text-v1.5)...[/blue]")
+        # Pass trust_remote_code=True for Nomic model loading
+        _model = SentenceTransformer("nomic-ai/nomic-embed-text-v1.5", trust_remote_code=True)
+        console.print("[green]Nomic model loaded successfully.[/green]")
     return _model
 
 def embed_query(pir: str) -> np.ndarray:
-    """Generates a normalized embedding for the query with the BGE query instruction prefix."""
-    model = get_bge_model()
-    # The prefix instructs BGE that this is a query for a retrieval task
-    text = f"Represent this query for retrieving relevant documents: {pir}"
+    """Generates a normalized embedding for the query with the Nomic query instruction prefix."""
+    model = get_nomic_model()
+    # Nomic v1.5 query prefix
+    text = f"search_query: {pir}"
     embedding = model.encode(text, normalize_embeddings=True)
     # Ensure it's a 2D numpy array of shape (1, dim)
     return np.ascontiguousarray(np.expand_dims(embedding, axis=0).astype("float32"))
 
 def embed_docs(summaries: list[str]) -> np.ndarray:
-    """Generates normalized embeddings for a list of document summaries with the BGE document prefix."""
-    model = get_bge_model()
-    prefixed = [f"Represent this document for retrieval: {s}" for s in summaries]
+    """Generates normalized embeddings for a list of document summaries with the Nomic document prefix."""
+    model = get_nomic_model()
+    # Nomic v1.5 document prefix
+    prefixed = [f"search_document: {s}" for s in summaries]
     embeddings = model.encode(prefixed, batch_size=32, normalize_embeddings=True)
     return np.ascontiguousarray(embeddings.astype("float32"))
 

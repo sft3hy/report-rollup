@@ -42,7 +42,7 @@ async def run_pipeline(pir_query: str):
         console.print("[red]Error: No articles matching the extracted terms were found. Exiting.[/red]")
         return
 
-    # --- STAGE 3: Semantic Filtering (BGE + FAISS) ---
+    # --- STAGE 3: Semantic Filtering (Nomic + FAISS) ---
     with console.status("[bold blue]Stage 3: Embedding summaries & indexing in FAISS flat IP vector database...[/bold blue]"):
         filtered_articles, dense_scores = semantic_filter(pir_query, candidates, top_k=50)
     

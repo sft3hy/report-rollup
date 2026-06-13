@@ -8,19 +8,19 @@ from rich.console import Console
 
 from pir_search.models import Article
 from pir_search.extractor import get_spacy_model
-from pir_search.embedder import get_bge_model, embed_query
+from pir_search.embedder import get_nomic_model, embed_query
 
 load_dotenv()
 console = Console()
 
-class BGEChromaEmbeddingFunction(EmbeddingFunction):
+class NomicChromaEmbeddingFunction(EmbeddingFunction):
     """
-    Custom embedding function for ChromaDB that uses our loaded BGE model
+    Custom embedding function for ChromaDB that uses our loaded Nomic model
     and applies the document retrieval instruction prefix.
     """
     def __call__(self, input: Documents) -> Embeddings:
-        model = get_bge_model()
-        prefixed = [f"Represent this document for retrieval: {doc}" for doc in input]
+        model = get_nomic_model()
+        prefixed = [f"search_document: {doc}" for doc in input]
         embeddings = model.encode(prefixed, batch_size=32, normalize_embeddings=True)
         return embeddings.tolist()
 
@@ -29,7 +29,7 @@ CHROMA_PATH = Path("./chroma_store")
 
 def get_chroma_collection():
     """Initializes the Chroma persistent client and gets or creates the weekly_articles collection."""
-    ef = BGEChromaEmbeddingFunction()
+    ef = NomicChromaEmbeddingFunction()
     client = chromadb.PersistentClient(path=str(CHROMA_PATH.resolve()))
     return client.get_or_create_collection("weekly_articles", embedding_function=ef)
 
@@ -67,7 +67,7 @@ def chunk_article_text(text: str, target_chunk_tokens: int = 512) -> list[str]:
 
 def ingest_articles(articles: list[Article]) -> None:
     """
-    Chunks the full_text of all input articles, generates BGE embeddings,
+    Chunks the full_text of all input articles, generates Nomic embeddings,
     and upserts them into the local ChromaDB collection.
     """
     if not articles:
@@ -125,13 +125,13 @@ Based on the relevant documents retrieved from the collection, here are the deta
 
 def query_rag(question: str, original_report: str) -> str:
     """
-    Queries the ChromaDB collection using BGE-base semantic search.
+    Queries the ChromaDB collection using Nomic semantic search.
     Presents the top-8 chunks along with the original report to Claude to answer the user's follow-up.
     Falls back to a local structured compiler if ANTHROPIC_API_KEY is not set.
     """
     collection = get_chroma_collection()
 
-    # 1. Asymmetric semantic query: embed the query with the BGE query prefix
+    # 1. Asymmetric semantic query: embed the query with the Nomic query prefix
     q_emb = embed_query(question)
     
     # Query ChromaDB using the manually generated embedding
