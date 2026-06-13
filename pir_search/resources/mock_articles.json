@@ -1,0 +1,162 @@
+[
+  {
+    "article_id": "ART001",
+    "title": "APT29 Escalates Cyber Espionage Targeting European Diplomatic Entities",
+    "summary": "Russian state-sponsored threat group APT29 (Cozy Bear) has launched a new wave of spear-phishing campaigns targeting European ministries of foreign affairs and diplomatic channels.",
+    "full_text": "The threat intelligence group Cozy Bear, also known as APT29, has recently launched a highly targeted spear-phishing campaign aimed at European diplomatic services. Security researchers identified malicious payloads embedded in PDF documents pretending to be embassy notices. The campaign aims to gain persistent access to foreign ministry networks to extract diplomatic communications. Analysts note this activity spikes ahead of scheduled security conferences in Brussels. The threat actors are using advanced obfuscation techniques, including compromised legitimate domains for command-and-control operations, to bypass traditional perimeter security systems.",
+    "url": "https://intel-brief.com/articles/apt29-cyber-espionage-europe-2026",
+    "published_at": "2026-06-01T08:00:00Z"
+  },
+  {
+    "article_id": "ART002",
+    "title": "Increased Naval Operations in South China Sea Threaten Commercial Shipping Lanes",
+    "summary": "Chinese naval exercises near the Paracel Islands are causing disruption and raising security concerns for commercial maritime traffic transit through the South China Sea.",
+    "full_text": "Satellite imagery has confirmed a surge in Chinese naval patrols and live-fire exercises in the vicinity of the Paracel Islands in the South China Sea. Several Type 055 destroyers and amphibious assault ships have been spotted conducting maneuvers. Commercial ship operators have reported receiving warnings to steer clear of designated zones, causing significant detours. These disruptions are affecting cargo schedules between East Asia and Europe. Security analysts warn that these movements represent a tightening of control over critical maritime shipping lanes, raising the risk of unintended collisions or diplomatic escalations in the region.",
+    "url": "https://maritime-intel.org/reports/south-china-sea-naval-exercises",
+    "published_at": "2026-06-02T14:30:00Z"
+  },
+  {
+    "article_id": "ART003",
+    "title": "Iranian Patrol Boats Detain Oil Tanker in the Strait of Hormuz",
+    "summary": "A commercial oil tanker sailing under a Marshall Islands flag was intercepted and detained by the Iranian Revolutionary Guard Corps (IRGC) in the Strait of Hormuz.",
+    "full_text": "An oil tanker carrying crude from the Arabian Gulf was intercepted by fast attack boats operated by the IRGC in the Strait of Hormuz. The vessel was boarded and redirected into Iranian territorial waters. The IRGC claimed the detention was due to an unspecified maritime collision, but regional analysts view the move as retaliatory leverage following recent Western sanctions. US naval forces in the region have increased patrols in response, advising commercial shipping fleets to exercise extreme caution and transit the strait in convoys where possible. This incident has caused a immediate 2% spike in global crude oil prices.",
+    "url": "https://global-energy-wire.com/news/tanker-detention-strait-of-hormuz",
+    "published_at": "2026-06-03T11:15:00Z"
+  },
+  {
+    "article_id": "ART004",
+    "title": "Colonial Pipeline Suffers Minor Operational Disruption from Cyber Attack",
+    "summary": "A cyber security incident targeting Colonial Pipeline's corporate IT network forced a temporary shutdown of billing systems, though fuel delivery remained largely unaffected.",
+    "full_text": "Colonial Pipeline confirmed that it took some corporate IT systems offline after detecting unauthorized access to its administrative servers. The incident, characterized as a ransomware attempt by a suspected Russian-speaking cybercrime syndicate, triggered immediate incident response protocols. Unlike the 2021 attack, operational technology (OT) systems controlling the physical pipeline flow were isolated and unaffected. Fuel delivery along the East Coast of the United States continued without interruption. Security experts praised the segmenting of IT and OT networks, demonstrating improved resilience since the previous major outage.",
+    "url": "https://cyber-defense-journal.net/colonial-pipeline-cyber-incident-2026",
+    "published_at": "2026-06-04T09:45:00Z"
+  },
+  {
+    "article_id": "ART005",
+    "title": "Russian Vessels Mapped Undersea Energy and Telecommunications Infrastructure in the North Sea",
+    "summary": "North Sea intelligence agencies report suspicious movements by Russian oceanographic research ships suspected of mapping subsea pipelines and internet cables for future sabotage.",
+    "full_text": "Joint intelligence operations by Norway, Denmark, and the UK have tracked several Russian oceanographic research vessels behaving suspiciously near subsea power cables and gas pipelines in the North Sea. The vessels, equipped with specialized side-scan sonar and underwater drones, lingered over critical nodes for hours. Security officials believe these activities are part of a coordinated program to map European underwater infrastructure vulnerabilities. In a crisis scenario, these lines could be severed to disrupt power distribution and internet communications across Western Europe. NATO has stepped up maritime surveillance and sonar monitoring in response.",
+    "url": "https://defense-analysis.eu/russian-ships-map-north-sea-cables",
+    "published_at": "2026-06-05T16:20:00Z"
+  },
+  {
+    "article_id": "ART006",
+    "title": "Germany Boosts Security at New Wilhelmshaven LNG Terminal Following Threat Alerts",
+    "summary": "German federal police have increased security measures at the Wilhelmshaven LNG import terminal following intelligence warnings of potential physical sabotage by state actors.",
+    "full_text": "Germany has heightened security protocols around its newly expanded Liquefied Natural Gas (LNG) terminal at Wilhelmshaven. The federal government received credible intelligence warning of potential drone threats and physical intrusions targeting the floating storage and regasification units (FSRUs). Security fencing, maritime patrols, and anti-drone jamming arrays have been deployed around the facility. Wilhelmshaven is a critical point for Germany's post-Nord Stream energy strategy, making it a high-value target for adversaries seeking to exploit European energy vulnerabilities during the upcoming winter season.",
+    "url": "https://euro-energy-reporter.de/wilhelmshaven-lng-terminal-security-upgraded",
+    "published_at": "2026-06-06T07:10:00Z"
+  },
+  {
+    "article_id": "ART007",
+    "title": "Lazarus Group Targets Cryptocurrency Exchanges with Malicious Python Packages",
+    "summary": "North Korean state hackers are using compromised developer repositories and fake libraries to infiltrate cryptocurrency exchanges and steal digital assets.",
+    "full_text": "The Lazarus Group, a state-sponsored cyber syndicate linked to North Korea, has been observed publishing malicious packages on the PyPI package manager. These libraries mimic popular blockchain SDKs but contain hidden backdoors that execute upon installation. The campaign specifically targets software developers working at major cryptocurrency exchanges and decentralized finance (DeFi) startups. Once a developer machine is compromised, the threat actors harvest credentials and attempt lateral movement to compromise wallet infrastructures. The FBI issued a joint advisory warning organizations to verify package signatures before installation.",
+    "url": "https://blockchain-security.com/lazarus-pypi-supply-chain-attacks",
+    "published_at": "2026-06-07T12:00:00Z"
+  },
+  {
+    "article_id": "ART008",
+    "title": "Quad Alliance Launches Joint Maritime Drills in the Bay of Bengal",
+    "summary": "Naval forces from India, Japan, Australia, and the US have commenced the annual Malabar exercise, focusing on anti-submarine warfare and sea lane protection.",
+    "full_text": "The Quad nations have kicked off a major naval exercise in the Bay of Bengal to enhance interoperability and counter growing assertive naval presence in the Indo-Pacific. The drills feature carrier strike groups, stealth frigates, and long-range maritime patrol aircraft. Training scenarios include anti-submarine warfare drills, surface firing exercises, and mock search-and-rescue operations. Naval commanders emphasized that the exercise aims to support a free and open Indo-Pacific, securing vital shipping lanes that carry the bulk of global trade from regional coercion.",
+    "url": "https://indo-pacific-monitor.com/quad-malabar-naval-drills-commence",
+    "published_at": "2026-06-08T15:40:00Z"
+  },
+  {
+    "article_id": "ART009",
+    "title": "Drone Strike Targets Oil Processing Facility in Eastern Province",
+    "summary": "A coordinated drone attack on a major oil processing plant in Saudi Arabia caused a temporary fire but resulted in minimal impact on production capacity.",
+    "full_text": "Saudi energy officials confirmed a drone attack targeted a processing facility in the Eastern Province. The assault, launched by regional proxies, used explosive-laden unmanned aerial vehicles (UAVs) to strike storage tanks. Air defense forces intercepted several drones, but two breached the perimeter, starting a localized fire. Emergency crews extinguished the flames within hours. While some refining units were temporarily shut down as a precaution, global supply commitments were met using existing reserves. Saudi Aramco has since deployed additional short-range air defense systems to protect the facility.",
+    "url": "https://mideast-energy-news.com/saudi-facility-drone-strike-2026",
+    "published_at": "2026-06-09T05:30:00Z"
+  },
+  {
+    "article_id": "ART010",
+    "title": "Volt Typhoon Infiltrates Critical Infrastructure Control Networks in Guam",
+    "summary": "The cyber threat group Volt Typhoon has been detected utilizing living-off-the-land techniques to compromise communications and port infrastructure networks in Guam.",
+    "full_text": "A joint cybersecurity advisory by CISA and international partners has detailed ongoing espionage activity by the threat group Volt Typhoon. The actors have infiltrated critical infrastructure sectors in Guam, including communications hubs, maritime ports, and utilities. Rather than deploying malware, the group relies on pre-installed administrative tools (living-off-the-land) to evade detection. Analysts believe the objective is to establish pre-positioned capabilities that could be used to disrupt communications and US military logistics during a hypothetical conflict in the Taiwan Strait.",
+    "url": "https://cyber-security-bulletin.gov/volt-typhoon-critical-infra-guam",
+    "published_at": "2026-06-10T10:00:00Z"
+  },
+  {
+    "article_id": "ART011",
+    "title": "Sabotage Investigation Opened After Baltic Pipeline Leak Detected",
+    "summary": "Seismologists detected minor underwater tremors coinciding with a sudden pressure drop in a gas pipeline connecting Finland and Estonia, leading authorities to suspect sabotage.",
+    "full_text": "An investigation has been launched by Finnish and Estonian authorities following a sudden drop in pressure in the Balticconnector gas pipeline. The incident occurred in the Baltic Sea, with seismologists reporting acoustic signals consistent with an underwater explosion. Inspection teams deployed subsea drones and discovered severe mechanical damage on the pipeline wall, suggesting deliberate external force rather than natural wear and tear. Patrols in the area had previously noted Russian merchant ships with AIS transponders deactivated hovering nearby. NATO has offered maritime security support to protect regional subsea energy links.",
+    "url": "https://baltic-news-network.com/balticconnector-pipeline-leak-investigation",
+    "published_at": "2026-06-11T13:20:00Z"
+  },
+  {
+    "article_id": "ART012",
+    "title": "GPS Spoofing Disrupts Maritime Navigation in the Eastern Mediterranean",
+    "summary": "Commercial cargo vessels and tankers report severe GPS interference and spoofing incidents near Cyprus, forcing reliance on backup navigation systems.",
+    "full_text": "Maritime safety agencies have issued alerts following reports of intense GPS spoofing and interference in the Eastern Mediterranean, particularly in waters surrounding Cyprus. Ships have reported their onboard GPS receivers suddenly displaying positions inland or hundreds of miles away. The interference is suspected to originate from electronic warfare installations operated by Russian forces in Syria, designed to protect military bases from drone strikes. The spoofing poses a major navigation hazard, forcing commercial vessels to rely on radar and visual piloting to navigate busy shipping channels.",
+    "url": "https://shipping-safety-weekly.com/mediterranean-gps-spoofing-hazards",
+    "published_at": "2026-06-12T09:15:00Z"
+  },
+  {
+    "article_id": "ART013",
+    "title": "Supply Chain Compromise Hits Naval Defense Contractor",
+    "summary": "A major naval shipbuilder's software supply chain was compromised, exposing sensitive design blueprints for future submarine classes to cyber theft.",
+    "full_text": "A leading defense contractor responsible for manufacturing naval propulsion systems has disclosed a data breach. The compromise occurred through a third-party vendor providing inventory management software. Hackers gained access to the contractor's internal files, downloading schematics and specifications for next-generation nuclear submarine reactors. Cybersecurity experts attributed the attack to a highly sophisticated state-sponsored group focused on military intelligence collection. The navy has initiated a comprehensive review of all contractor supply chain vulnerabilities to prevent similar data leaks.",
+    "url": "https://military-tech-news.com/naval-contractor-supply-chain-breach",
+    "published_at": "2026-06-12T16:50:00Z"
+  },
+  {
+    "article_id": "ART014",
+    "title": "European Union Unveils New Cyber Resilience Act for IoT and SCADA Systems",
+    "summary": "The European Parliament has approved strict cybersecurity rules for connected devices and industrial control systems, introducing heavy penalties for non-compliance.",
+    "full_text": "The European Union has passed the Cyber Resilience Act, introducing mandatory cybersecurity standards for all hardware and software sold in the single market. The law specifically target internet-connected consumer devices and SCADA systems used in utility management. Manufacturers must ensure regular security updates, perform vulnerability assessments, and report active exploits to regulators within 24 hours. Industry groups warned the rules could delay product launches, but EU officials argued they are critical to defending European networks from mounting state-sponsored cyber threats.",
+    "url": "https://eu-politics-digest.org/cyber-resilience-act-passed",
+    "published_at": "2026-06-12T11:00:00Z"
+  },
+  {
+    "article_id": "ART015",
+    "title": "Geopolitical Tensions Rise as East China Sea Oil Field Expansion Begins",
+    "summary": "Japan has lodged a formal protest against China's installation of a new drilling platform near the disputed maritime boundary in the East China Sea.",
+    "full_text": "Tensions have flared in the East China Sea after China deployed a new offshore oil and gas drilling rig close to the median line claimed by Japan. Tokyo claims the platform could tap into hydrocarbon reserves that cross into Japanese waters. Diplomatic protests have been filed, and Japan's Coast Guard has dispatched patrol vessels to monitor the site. Chinese foreign ministry spokespersons defended the project, stating it is entirely within sovereign Chinese territory. Analysts warn the dispute highlights the ongoing race for energy resources, which regularly causes friction and military posturing between the two nations.",
+    "url": "https://asia-geopolitics.net/east-china-sea-drilling-tensions",
+    "published_at": "2026-06-11T06:30:00Z"
+  },
+  {
+    "article_id": "ART016",
+    "title": "Undersea Gas Pipeline Security Tightened in the Mediterranean",
+    "summary": "Italy and Algeria announce joint naval patrols to monitor the TransMed pipeline, securing critical natural gas supplies for southern Europe.",
+    "full_text": "Following sabotage incidents in northern Europe, Italy and Algeria have agreed to coordinate naval activities to protect the Trans-Mediterranean pipeline. The subsea pipeline transports millions of cubic meters of Algerian gas to Italian hubs annually. Joint drills will focus on submarine detection, underwater drone tracking, and rapid response to physical threats. Military analysts note that safeguarding southern gas corridors has become top priority for Rome as European countries diversify away from Russian energy imports, making Mediterranean pipelines vital strategic assets.",
+    "url": "https://med-energy-journal.org/italy-algeria-secure-transmed-pipeline",
+    "published_at": "2026-06-10T14:45:00Z"
+  },
+  {
+    "article_id": "ART017",
+    "title": "Ransomware Attack Disrupts Operations at Rotterdam Port Terminal",
+    "summary": "A ransomware campaign targeting automated container terminals at the Port of Rotterdam caused severe traffic backlogs and manual cargo processing delays.",
+    "full_text": "One of the largest container terminals in Rotterdam experienced severe logistics delays after a cyber security attack disabled its automated crane scheduling system. Ships were forced to wait at anchor, and trucks lined up for miles outside the gates. System administrators isolated the infected servers and began restoring databases from backups. Although no financial demands were publicly disclosed, threat intelligence sources point to an Eastern European ransomware gang. The incident highlights the high vulnerability of modern automated port logistics to cyber disruption.",
+    "url": "https://shipping-and-logistics.nl/rotterdam-terminal-cyber-attack",
+    "published_at": "2026-06-09T17:30:00Z"
+  },
+  {
+    "article_id": "ART018",
+    "title": "Taiwanese Semiconductor Supply Chains Face Targeted Phishing Attacks",
+    "summary": "Sophisticated spear-phishing emails targeting chip engineers seek to steal fabrication designs and industrial secrets from Taiwanese high-tech firms.",
+    "full_text": "Security intelligence firms have detected a wave of spear-phishing campaigns targeting leading semiconductor manufacturers in Taiwan. The emails are designed to look like routine procurement inquiries or HR updates, containing malicious macros in attachments. If opened, they execute modular malware capable of taking screenshots, logging keystrokes, and uploading internal design files. The targeted nature of the campaign indicates state-sponsored industrial espionage aimed at capturing manufacturing secrets of advanced microchips, which are critical to both global tech industries and military applications.",
+    "url": "https://tech-espionage-report.tw/taiwan-semiconductor-phishing-threat",
+    "published_at": "2026-06-08T08:15:00Z"
+  },
+  {
+    "article_id": "ART019",
+    "title": "North Sea Wind Farms Deploy Sonar Arrays for Security Monitoring",
+    "summary": "Offshore wind developers install undersea acoustics arrays to monitor for unauthorized vessels and subsea divers near offshore power substations.",
+    "full_text": "A consortium of North Sea wind energy developers has announced the deployment of advanced hydrophone and sonar networks across several offshore wind farms. The action comes in response to warnings from defense officials regarding potential subsea sabotage by hostile foreign governments. The acoustic arrays are designed to detect underwater signatures, including submarines, small diving craft, or commercial divers, that approach the wind turbine foundations or the power converter platforms. The real-time feeds are linked directly to national maritime operations centers for immediate response.",
+    "url": "https://wind-energy-intel.co.uk/north-sea-wind-farm-sonar-deployment",
+    "published_at": "2026-06-07T10:30:00Z"
+  },
+  {
+    "article_id": "ART020",
+    "title": "Cybersecurity Vulnerability Exposed in Siemens SCADA Systems",
+    "summary": "Siemens issues urgent patches for industrial control software used in power grids, warning of potential remote code execution by unauthenticated users.",
+    "full_text": "Siemens has released critical security patches for its SIMATIC WinCC SCADA software, widely used to monitor and control electrical distribution grids. The vulnerability, rated 9.8 on the CVSS scale, allows a remote attacker to execute arbitrary code on the control server without authentication. If exploited, the attacker could manipulate grid switches and cause widespread power outages. Infrastructure security agencies have urged utility operators to apply the patches immediately, noting that cyber reconnaissance teams from several hostile nations have been active scanning for exposed WinCC ports.",
+    "url": "https://industrial-control-news.de/siemens-scada-critical-vulnerability-2026",
+    "published_at": "2026-06-06T11:45:00Z"
+  }
+]
