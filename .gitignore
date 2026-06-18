@@ -15,6 +15,7 @@ chroma_store/
 wheels/
 models/
 requirements.txt
+project_bundle.txt
 
 # Node / React Frontend
 frontend/node_modules/
