@@ -151,3 +151,13 @@ def test_rag_chunker(mock_articles):
     assert len(chunks) > 0
     # Verify sentences are glued back together or split
     assert any("first sentence" in c for c in chunks)
+
+def test_call_llm_fallback(monkeypatch):
+    """Test that call_llm falls back gracefully when keys are missing."""
+    import pytest
+    from pir_search.llm import call_llm
+    
+    monkeypatch.setenv("SANCTUARY_KEY", "")
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "")
+    with pytest.raises(ValueError, match="Neither SANCTUARY_KEY nor ANTHROPIC_API_KEY"):
+        call_llm("sys", "user")

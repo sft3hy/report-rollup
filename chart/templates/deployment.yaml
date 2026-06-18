@@ -26,5 +26,13 @@ spec:
             - name: http
               containerPort: {{ .Values.service.portWeb }}
               protocol: TCP
+          volumeMounts:
+            - name: cosmic-certs
+              mountPath: /etc/certs
+              readOnly: true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: cosmic-certs
+          secret:
+            secretName: cosmic-secret

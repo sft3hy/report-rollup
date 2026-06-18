@@ -87,9 +87,10 @@ export HF_HUB_OFFLINE=1
 export NOMIC_MODEL_PATH="$MODEL_DIR/nomic-embed-text-v1.5"
 export SPACY_MODEL_PATH="en_core_web_sm"
 
-# Unset Anthropic key to force local mock reporter if not set in current env
-if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
-  echo "No ANTHROPIC_API_KEY detected. Running with offline Mock LLM compiler."
+# Unset keys to force local mock reporter if not set in current env
+if [ -z "${SANCTUARY_KEY:-}" ] && [ -z "${ANTHROPIC_API_KEY:-}" ]; then
+  echo "No SANCTUARY_KEY or ANTHROPIC_API_KEY detected. Running with offline Mock LLM compiler."
+  export SANCTUARY_KEY=""
   export ANTHROPIC_API_KEY=""
 fi
 

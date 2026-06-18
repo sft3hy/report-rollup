@@ -3,7 +3,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import chromadb
 from chromadb.api.types import EmbeddingFunction, Documents, Embeddings
-from anthropic import Anthropic
+from pir_search.llm import call_llm
 from rich.console import Console
 
 from pir_search.models import Article
@@ -147,16 +147,16 @@ def query_rag(question: str, original_report: str) -> str:
     if not chunks:
         return "No relevant context was found in the article database to answer your follow-up query."
 
-    # 2. Check for Anthropic API Key
-    api_key = os.getenv("ANTHROPIC_API_KEY")
-    if not api_key or not api_key.strip():
-        console.print("[yellow]WARNING: ANTHROPIC_API_KEY is not set. Using Mock RAG answer compiler.[/yellow]")
+    # 2. Check for Sanctuary / Anthropic API Key
+    sanctuary_key = os.getenv("SANCTUARY_KEY")
+    anthropic_key = os.getenv("ANTHROPIC_API_KEY")
+    if (not sanctuary_key or not sanctuary_key.strip()) and (not anthropic_key or not anthropic_key.strip()):
+        console.print("[yellow]WARNING: Neither SANCTUARY_KEY nor ANTHROPIC_API_KEY is set. Using Mock RAG answer compiler.[/yellow]")
         return generate_mock_rag_answer(question, original_report, chunks, metadatas)
 
-    # 3. Call Claude with context
+    # 3. Call Claude with context via Sanctuary
     try:
-        console.print("[blue]Querying Claude with retrieved subsea context...[/blue]")
-        client = Anthropic(api_key=api_key)
+        console.print("[blue]Querying Sanctuary for grounded follow-up...[/blue]")
         
         context_str = "\n\n".join(
             f"Source [{meta['article_id']}]: {meta['title']}\n{doc}"
@@ -181,16 +181,13 @@ Retrieved Context:
 Follow-up Question: {question}
 """
         
-        message = client.messages.create(
+        return call_llm(
+            system_prompt=system_prompt,
+            user_prompt=user_prompt,
             model="bedrock-claude-sonnet-4.5-gov",
             max_tokens=1500,
-            temperature=0.2,
-            system=system_prompt,
-            messages=[
-                {"role": "user", "content": user_prompt}
-            ]
+            temperature=0.2
         )
-        return message.content[0].text
     except Exception as e:
-        console.print(f"[red]Error calling Anthropic API for RAG query: {e}. Falling back to Mock RAG answer.[/red]")
+        console.print(f"[red]Error calling Sanctuary API for RAG query: {e}. Falling back to Mock RAG answer.[/red]")
         return generate_mock_rag_answer(question, original_report, chunks, metadatas)

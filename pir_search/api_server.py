@@ -108,4 +108,26 @@ if os.path.exists(frontend_dist):
 
 if __name__ == "__main__":
     # Host on 0.0.0.0 for containerized execution
-    uvicorn.run("pir_search.api_server:app", host="0.0.0.0", port=8000)
+    # Scan for SSL certificates to serve application over HTTPS
+    ssl_cert = "/etc/certs/cosmic.crt"
+    ssl_key = "/etc/certs/cosmic.key"
+    ssl_ca = "/etc/certs/ca-bundle.crt"
+
+    if not os.path.exists(ssl_cert):
+        ssl_cert = os.path.expanduser("~/dev/certs/cosmic.crt")
+        ssl_key = os.path.expanduser("~/dev/certs/cosmic.key")
+        ssl_ca = os.path.expanduser("~/dev/certs/ca-bundle.crt")
+
+    uvicorn_kwargs = {
+        "host": "0.0.0.0",
+        "port": 8000
+    }
+
+    if os.path.exists(ssl_cert) and os.path.exists(ssl_key):
+        print(f"SSL Certificates detected. Running in HTTPS mode.")
+        uvicorn_kwargs["ssl_certfile"] = ssl_cert
+        uvicorn_kwargs["ssl_keyfile"] = ssl_key
+        if os.path.exists(ssl_ca):
+            uvicorn_kwargs["ssl_ca_certs"] = ssl_ca
+
+    uvicorn.run("pir_search.api_server:app", **uvicorn_kwargs)

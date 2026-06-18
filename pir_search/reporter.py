@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
-from anthropic import Anthropic
 from rich.console import Console
+from pir_search.llm import call_llm
 
 from pir_search.models import Article
 
@@ -61,35 +61,30 @@ A synthesis of current intelligence reports indicates several developments:
 def generate_report(pir: str, articles: list[Article]) -> str:
     """
     Stage 4: LLM report generation.
-    Sends the top 10 articles to Anthropic Claude 3.5 Sonnet to generate an intelligence report.
-    Falls back to a structured local compiler if ANTHROPIC_API_KEY is not set.
+    Sends the top 10 articles to Sanctuary NRO LLM gateway (Claude 3.5 Sonnet) to generate an intelligence report.
+    Falls back to a structured local compiler if SANCTUARY_KEY/ANTHROPIC_API_KEY is not set.
     """
     if not articles:
         return "No relevant reporting articles were found to generate an assessment."
 
-    api_key = os.getenv("ANTHROPIC_API_KEY")
-    if not api_key or not api_key.strip():
-        console.print("[yellow]WARNING: ANTHROPIC_API_KEY is not set in the environment. Using Mock LLM reporter.[/yellow]")
+    sanctuary_key = os.getenv("SANCTUARY_KEY")
+    anthropic_key = os.getenv("ANTHROPIC_API_KEY")
+    if (not sanctuary_key or not sanctuary_key.strip()) and (not anthropic_key or not anthropic_key.strip()):
+        console.print("[yellow]WARNING: Neither SANCTUARY_KEY nor ANTHROPIC_API_KEY is set. Using Mock LLM reporter.[/yellow]")
         return generate_mock_report(pir, articles)
 
     try:
-        console.print("[blue]Sending assessment request to Anthropic Claude...[/blue]")
-        client = Anthropic(api_key=api_key)
+        console.print("[blue]Sending assessment request to Sanctuary LLM Gateway...[/blue]")
         user_prompt = build_user_prompt(pir, articles)
         
-        # Using bedrock-claude-sonnet-4.5-gov as specified by the configuration
-        message = client.messages.create(
-            model="bedrock-claude-sonnet-4.5-gov",
-            max_tokens=2500,
-            temperature=0.2,
-            system=SYSTEM_PROMPT,
-            messages=[
-                {"role": "user", "content": user_prompt}
-            ]
+        # Call the unified LLM runner
+        return call_llm(
+            system_prompt=SYSTEM_PROMPT,
+            user_prompt=user_prompt,
+            model="bedrock-claude-sonnet-4.5-gov"
         )
-        return message.content[0].text
     except Exception as e:
-        console.print(f"[red]Error calling Anthropic API: {e}. Falling back to Mock LLM reporter.[/red]")
+        console.print(f"[red]Error calling Sanctuary API: {e}. Falling back to Mock LLM reporter.[/red]")
         return generate_mock_report(pir, articles)
 
 def format_report(report_text: str, articles: list[Article]) -> str:
