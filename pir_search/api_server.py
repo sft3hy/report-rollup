@@ -1,6 +1,8 @@
 import os
 import uvicorn
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from pir_search.extractor import extract_search_terms
@@ -11,6 +13,15 @@ from pir_search.reporter import generate_report, format_report
 from pir_search.rag import ingest_articles, query_rag
 
 app = FastAPI(title="PIR Intelligence Pipeline API", version="0.1.0")
+
+# Configure CORS middleware to enable Vite development server access
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class PIRRequest(BaseModel):
     query: str
@@ -89,6 +100,11 @@ async def query_followup(request: QARequest):
         return {"answer": answer}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+# Mount built React static files if they exist in production
+frontend_dist = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "dist")
+if os.path.exists(frontend_dist):
+    app.mount("/", StaticFiles(directory=frontend_dist, html=True), name="frontend")
 
 if __name__ == "__main__":
     # Host on 0.0.0.0 for containerized execution

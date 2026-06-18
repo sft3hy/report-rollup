@@ -1,3 +1,4 @@
+import os
 import re
 import spacy
 from keybert import KeyBERT
@@ -16,11 +17,12 @@ def get_spacy_model():
     """Lazy-loads and returns the spaCy model."""
     global _nlp
     if _nlp is None:
+        spacy_model = os.getenv("SPACY_MODEL_PATH", "en_core_web_sm")
         try:
-            _nlp = spacy.load("en_core_web_sm")
+            _nlp = spacy.load(spacy_model)
         except OSError:
             # Fallback if download hasn't finished yet or fails
-            _nlp = spacy.load("en_core_web_sm")
+            _nlp = spacy.load(spacy_model)
     return _nlp
 
 def get_keybert_model(shared_transformer=None):
@@ -30,7 +32,12 @@ def get_keybert_model(shared_transformer=None):
         if shared_transformer is not None:
             _kw_model = KeyBERT(model=shared_transformer)
         else:
-            _kw_model = KeyBERT()
+            try:
+                from pir_search.embedder import get_nomic_model
+                nomic_model = get_nomic_model()
+                _kw_model = KeyBERT(model=nomic_model)
+            except Exception as e:
+                _kw_model = KeyBERT()
     return _kw_model
 
 def clean_term(term: str) -> str:

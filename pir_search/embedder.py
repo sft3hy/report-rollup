@@ -1,3 +1,4 @@
+import os
 import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
@@ -13,9 +14,10 @@ def get_nomic_model() -> SentenceTransformer:
     """Lazy-loads and caches the nomic-ai/nomic-embed-text-v1.5 model."""
     global _model
     if _model is None:
-        console.print("[blue]Loading Nomic embedding model (nomic-ai/nomic-embed-text-v1.5)...[/blue]")
+        model_path = os.getenv("NOMIC_MODEL_PATH", "nomic-ai/nomic-embed-text-v1.5")
+        console.print(f"[blue]Loading Nomic embedding model ({model_path})...[/blue]")
         # Pass trust_remote_code=True for Nomic model loading
-        _model = SentenceTransformer("nomic-ai/nomic-embed-text-v1.5", trust_remote_code=True)
+        _model = SentenceTransformer(model_path, trust_remote_code=True)
         console.print("[green]Nomic model loaded successfully.[/green]")
     return _model
 

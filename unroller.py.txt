@@ -1,0 +1,102 @@
+#!/usr/bin/env python3
+import os
+import base64
+import sys
+
+def main():
+    bundle_name = "rag-reports.txt"
+    # Find bundle path relative to script directory
+    script_dir = os.path.abspath(os.path.dirname(__file__))
+    bundle_path = os.path.join(script_dir, bundle_name)
+    
+    if not os.path.exists(bundle_path):
+        # Also check current working directory just in case
+        bundle_path = os.path.abspath(bundle_name)
+        if not os.path.exists(bundle_path):
+            print(f"Error: {bundle_name} not found in script directory or current directory.", file=sys.stderr)
+            print("Please ensure the bundle file is in the same directory as this script.", file=sys.stderr)
+            sys.exit(1)
+        
+    print(f"Reading project bundle: {bundle_path}")
+    
+    try:
+        with open(bundle_path, 'r', encoding='utf-8') as f:
+            first_line = f.readline()
+            if not first_line.startswith("DELIMITER: "):
+                print("Error: Invalid bundle format (missing delimiter header).", file=sys.stderr)
+                sys.exit(1)
+            delimiter = first_line.strip().split("DELIMITER: ", 1)[1]
+    except Exception as e:
+        print(f"Error reading delimiter: {e}", file=sys.stderr)
+        sys.exit(1)
+        
+    print(f"Delimiter detected: {delimiter}")
+    
+    try:
+        with open(bundle_path, 'r', encoding='utf-8') as f:
+            # Skip the first header line (DELIMITER: ...)
+            f.readline()
+            
+            # Read first block boundary
+            line = f.readline()
+            while line:
+                line_stripped = line.strip()
+                if line_stripped == delimiter:
+                    # Start of a file block, read metadata
+                    path_line = f.readline()
+                    if not path_line or not path_line.startswith("PATH: "):
+                        # End of all file blocks or EOF
+                        break
+                    path = path_line.strip().split("PATH: ", 1)[1]
+                    
+                    mode_line = f.readline()
+                    mode = int(mode_line.strip().split("MODE: ", 1)[1], 8)
+                    
+                    encoding_line = f.readline()
+                    encoding = encoding_line.strip().split("ENCODING: ", 1)[1]
+                    
+                    # Read header closing delimiter
+                    header_close_line = f.readline()
+                    if header_close_line.strip() != delimiter:
+                        print(f"Error: Malformed file block header for {path}", file=sys.stderr)
+                        sys.exit(1)
+                    
+                    # Read the base64 content line
+                    content_line = f.readline()
+                    content_b64 = content_line.strip()
+                    
+                    # Determine absolute destination path relative to where unroller is running
+                    dest_path = os.path.join(script_dir, path)
+                    
+                    print(f"  Extracting: {path} (mode: {oct(mode)})")
+                    
+                    # Ensure directory structure exists
+                    dest_dir = os.path.dirname(dest_path)
+                    if dest_dir:
+                        os.makedirs(dest_dir, exist_ok=True)
+                    
+                    # Decode base64 and write the file
+                    try:
+                        content_bytes = base64.b64decode(content_b64)
+                        with open(dest_path, 'wb') as dest_f:
+                            dest_f.write(content_bytes)
+                        
+                        # Set file permissions (mode)
+                        os.chmod(dest_path, mode)
+                    except Exception as e:
+                        print(f"  Error writing {path}: {e}", file=sys.stderr)
+                    
+                    # Read next line, which should be the delimiter for the next file
+                    line = f.readline()
+                else:
+                    # Read next line if the current one wasn't the delimiter
+                    line = f.readline()
+        
+    except Exception as e:
+        print(f"Error during reconstruction: {e}", file=sys.stderr)
+        sys.exit(1)
+        
+    print("\nProject reconstruction successfully completed!")
+
+if __name__ == '__main__':
+    main()
